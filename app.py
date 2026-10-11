@@ -11,9 +11,13 @@ from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import Pipeline
 
+DATA_PATH = Path(__file__).parent / "air_quality_assessment.csv"
+
+if not DATA_PATH.exists():
+    raise FileNotFoundError(f"Missing dataset file: {DATA_PATH}")
+
 st.set_page_config(page_title="Industrial AQI Intelligence", page_icon="🌫️", layout="wide")
 
-DATA_PATH = Path(__file__).parent / "air_quality_assessment.csv"
 POLLUTANTS = ["PM2_5", "PM10", "NO2", "SO2", "CO", "O3"]
 WEATHER = ["Temperature", "Humidity", "Wind_Speed", "Wind_Direction", "Pressure", "Rainfall"]
 OPERATIONS = ["Traffic_Index", "Industrial_Activity"]
